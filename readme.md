@@ -81,7 +81,7 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
 
 5. **Démarrez le serveur :**
    ```bash
-   npm run dev
+   npm run start
    ```
 
 6. **Importer la collection Postman :**
