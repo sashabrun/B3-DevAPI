@@ -63,6 +63,13 @@ export const deleteCoupleById = async (req, res) => {
     try {
         const coupleId = parseInt(req.params.id);
 
+        if (user1_id != req.user?.id || user2_id != req.user?.id) {
+            return res.status(403).json({
+                success: false,
+                message: 'You are not authorized to delete this couple'
+            });
+        }
+
         const hasBeenDeleted = await deleteById(coupleId);
         if (!hasBeenDeleted) {
             return res.status(404).json({
