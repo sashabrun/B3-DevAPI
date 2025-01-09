@@ -1,0 +1,332 @@
+openapi: 3.0.3
+info:
+  title: Prisma API
+  description: API generated for the Prisma schema.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local server
+
+paths:
+  /users/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User registered
+
+  /users/login:
+    post:
+      summary: Login a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: User logged in
+
+  /users/logout:
+    post:
+      summary: Logout a user
+      responses:
+        '204':
+          description: User logged out
+
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      summary: Update user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated
+    delete:
+      summary: Delete user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: User deleted
+
+  /countries:
+    get:
+      summary: Get all countries
+      responses:
+        '200':
+          description: List of countries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+    post:
+      summary: Create a new country
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Country'
+      responses:
+        '201':
+          description: Country created
+
+  /countries/{id}:
+    get:
+      summary: Get country by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Country details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
+    put:
+      summary: Update country by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Country'
+      responses:
+        '200':
+          description: Country updated
+    delete:
+      summary: Delete country by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Country deleted
+
+  /visits:
+    get:
+      summary: Get all visits
+      responses:
+        '200':
+          description: List of visits
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Visit'
+    post:
+      summary: Create a new visit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visit'
+      responses:
+        '201':
+          description: Visit created
+
+  /visits/{id}:
+    get:
+      summary: Get visit by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Visit details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+    put:
+      summary: Update visit by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visit'
+      responses:
+        '200':
+          description: Visit updated
+    delete:
+      summary: Delete visit by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Visit deleted
+
+  /random-country:
+    get:
+      summary: Get a random country
+      responses:
+        '200':
+          description: Random country
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        password:
+          type: string
+        isAdmin:
+          type: boolean
+        favorite_continent:
+          $ref: '#/components/schemas/Continent'
+        preferred_temperature:
+          $ref: '#/components/schemas/Temperature'
+      required:
+        - username
+        - password
+
+    Country:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        continent:
+          $ref: '#/components/schemas/Continent'
+        temperature:
+          $ref: '#/components/schemas/Temperature'
+        is_open:
+          type: boolean
+      required:
+        - name
+        - continent
+        - temperature
+
+    Visit:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+        country_id:
+          type: integer
+        date:
+          type: string
+        rating:
+          type: integer
+      required:
+        - country_id
+        - date
+        - rating
+
+    Continent:
+      type: string
+      enum:
+        - Africa
+        - Antarctica
+        - Asia
+        - Europe
+        - North_America
+        - Oceania
+        - South_America
+
+    Temperature:
+      type: string
+      enum:
+        - Cold
+        - Hot
+        - Mild

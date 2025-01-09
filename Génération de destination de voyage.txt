@@ -1,0 +1,24 @@
+Génération de destination de voyage 
+
+-Ecrire la temperature (pays chaud / pays froid / pays tempérer)   ]1
+-Ne pas tomber plusieurs fois sur le meme pays (chaque année ça change) ]6
+-Un couple ça part a deux et donc les deux obtiennent le meme pays ]5
+-Si des gens se mettent en couple ne pas tomber sur un pays que l'un des deux a déjà visité ]5
+-Un pays peu refuser les voyages une année  ]4
+-En fonction de la note moyenne du voyage
+-Notre liste de visite   ]3
+-Continent préféré       ]2
+
+
+1 {-En fonction de la temperature}
+2 {-Continent préféré}
+3 {-Notre liste de visite}
+4 {-Couple}
+5 {-Ne pas tomber plusieurs fois sur le meme pays}
+6 {-Pays Ouvert/Fermer}
+
+Tables SQL
+user
+country
+couple
+visit
