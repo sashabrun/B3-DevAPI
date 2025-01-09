@@ -77,6 +77,14 @@ export const deleteVisitById = async (req, res) => {
             })
         }
 
+        const userid = req.user?.id;
+        if (userid != (await getById(id)).user_id) {
+            return res.status(403).json({
+                success: false,
+                message: 'You are not authorized to delete this visit'
+            })
+        }
+
         const hasBeenDeleted = await deleteById(id)
         if (!hasBeenDeleted) {
             return res.status(404).json({
@@ -107,10 +115,18 @@ export const updateVisitById = async (req, res) => {
     const { user_id, date, rating, country_id } = req.body;
 
     try {
+
         if (user_id) {
             return res.status(400).json({
                 success: false,
                 message: "Modification of user ID is not allowed"
+            });
+        }
+
+        if (user_id != req.user?.id){
+            return res.status(403).json({
+                success: false,
+                message: "You are not authorized to update this visit"
             });
         }
 

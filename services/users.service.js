@@ -2,6 +2,9 @@ import prisma from '../db.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
+/**
+ * Get all users
+ */
 export const getAll = async (sortBy, sortDirection) => {
     let options = {
         select: {
@@ -21,6 +24,9 @@ export const getAll = async (sortBy, sortDirection) => {
     return prisma.user.findMany(options);
 }
 
+/**
+ * Get user by id
+ */
 export const getById = async (id) => {
     return prisma.user.findUnique({
         select: {
@@ -35,6 +41,9 @@ export const getById = async (id) => {
     });
 }
 
+/**
+ * Delete user by id
+ */
 export const deleteById = async (id) => {
     if (await getById(id)) {
         await prisma.user.delete({
@@ -47,6 +56,9 @@ export const deleteById = async (id) => {
     return false
 }
 
+/**
+ * Update user by id
+ */
 export const updateById = async (id, data) => {
     const user = await prisma.user.update({
         where: {
@@ -68,6 +80,15 @@ export const updateById = async (id, data) => {
     return user
 }
 
+/**
+ * Register user
+ * @param username
+ * @param password
+ * @param isAdmin
+ * @param preferred_temperature
+ * @param favorite_continent
+ * @returns {Promise<Prisma.Prisma__UserClient<GetResult<Prisma.$UserPayload<DefaultArgs>, {select: {preferred_temperature: boolean, id: boolean, isAdmin: boolean, favorite_continent: boolean, username: boolean}, data: {password: *, preferred_temperature, isAdmin: boolean, favorite_continent, username}}, "create">, never, DefaultArgs>>}
+ */
 export const create = async (username, password, isAdmin = false, preferred_temperature, favorite_continent) => {
 
     const count = await prisma.user.count({
@@ -99,6 +120,12 @@ export const create = async (username, password, isAdmin = false, preferred_temp
     return user
 }
 
+/**
+ * Login user
+ * @param username
+ * @param password
+ * @returns {Promise<*>}
+ */
 export const login = async (username, password) => {
     const user = await prisma.user.findFirst({
         where: {
