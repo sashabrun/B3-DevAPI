@@ -1,10 +1,13 @@
-
 # Dev API
 
 ## **Description**
-Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. Elle permet de gérer les utilisateurs, les pays, les visites et les couples, tout en offrant des fonctionnalités avancées comme la sélection de pays aléatoires en fonction des préférences utilisateur.
+
+Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. Elle permet de gérer les utilisateurs,
+les pays, les visites et les couples, tout en offrant des fonctionnalités avancées comme la sélection de pays aléatoires
+en fonction des préférences utilisateur.
 
 ## **Fonctionnalités principales**
+
 1. **Gestion des utilisateurs :**
     - Inscription, connexion, et déconnexion.
     - Gestion des préférences utilisateur (continent préféré, température favorite).
@@ -40,6 +43,7 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
     - Collection Postman pour tester toutes les routes de l'API.
 
 ## **Technologies utilisées**
+
 - **Backend :**
     - [Node.js](https://nodejs.org/) avec [Express](https://expressjs.com/)
     - [Prisma](https://www.prisma.io/) pour la gestion de la base de données
@@ -55,6 +59,7 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
 ## **Installation**
 
 ### Prérequis
+
 - **Node.js** (v16 ou supérieur)
 - **NPM** ou **Yarn**
 - Une base de données (PostgreSQL recommandé)
@@ -64,6 +69,7 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
   ```
 
 ### Étapes
+
 1. **Clonez le dépôt :**
    ```bash
    git clone https://github.com/sashabrun/B3-DevAPI.git
@@ -105,7 +111,9 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
 ## **Utilisation**
 
 ### **Routes principales**
+
 #### **Utilisateurs**
+
 - `POST /users/register` : Inscription d'un utilisateur.
 - `POST /users/login` : Connexion d'un utilisateur.
 - `GET /users` : Liste des utilisateurs.
@@ -115,6 +123,7 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
 - `DELETE /users/logout` : Déconnexion d'un utilisateur.
 
 #### **Pays**
+
 - `GET /countries` : Liste des pays.
 - `POST /countries` : Ajouter un pays.
 - `GET /countries/{id}` : Détails d'un pays.
@@ -122,6 +131,7 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
 - `DELETE /countries/{id}` : Supprimer un pays.
 
 #### **Visites**
+
 - `GET /countries` : Liste des visites.
 - `POST /countries` : Ajouter un visite.
 - `GET /countries/{id}` : Détails d'une visite.
@@ -129,46 +139,73 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
 - `DELETE /countries/{id}` : Supprimer une visite.
 
 #### **Couples**
+
 - `POST /couples` : Associer deux utilisateurs.
 - `GET /couples` : Liste des couples.
 - `GET /countries/{id}` : Détails d'un couple.
 - `DELETE /countries/{id}` : Supprimer un couple.
 
 #### **Pays aléatoire**
+
 - `GET /random-country` : Récupérer un pays aléatoire selon les préférences utilisateur.
 
 ## **Structure des tables**
+
 ### **User**
-| Champ                 | Type      | Description                           |
-|-----------------------|-----------|---------------------------------------|
-| `id`                 | `Int`     | ID unique de l'utilisateur.          |
-| `username`           | `String`  | Nom d'utilisateur.                   |
-| `password`           | `String`  | Mot de passe hashé.                  |
-| `isAdmin`            | `Boolean` | Indique si l'utilisateur est admin.  |
-| `favorite_continent` | `String`  | Continent préféré de l'utilisateur.  |
-| `preferred_temperature` | `String` | Température préférée.               |
+
+| Champ                   | Type      | Description                         |
+|-------------------------|-----------|-------------------------------------|
+| `id`                    | `Int`     | ID unique de l'utilisateur.         |
+| `username`              | `String`  | Nom d'utilisateur.                  |
+| `password`              | `String`  | Mot de passe hashé.                 |
+| `isAdmin`               | `Boolean` | Indique si l'utilisateur est admin. |
+| `favorite_continent`    | `String`  | Continent préféré de l'utilisateur. |
+| `preferred_temperature` | `String`  | Température préférée.               |
 
 ### **Country**
-| Champ         | Type      | Description                                |
-|---------------|-----------|--------------------------------------------|
-| `id`         | `Int`     | ID unique du pays.                        |
-| `name`       | `String`  | Nom du pays.                              |
-| `continent`  | `String`  | Continent du pays.                        |
-| `temperature` | `String`  | Type de température (Hot, Mild, Cold).    |
-| `is_open`    | `Boolean` | Indique si le pays est ouvert ou fermé.    |
+
+| Champ         | Type      | Description                             |
+|---------------|-----------|-----------------------------------------|
+| `id`          | `Int`     | ID unique du pays.                      |
+| `name`        | `String`  | Nom du pays.                            |
+| `continent`   | `String`  | Continent du pays.                      |
+| `temperature` | `String`  | Type de température (Hot, Mild, Cold).  |
+| `is_open`     | `Boolean` | Indique si le pays est ouvert ou fermé. |
 
 ### **Visit**
-| Champ       | Type      | Description                                |
-|-------------|-----------|--------------------------------------------|
-| `id`       | `Int`     | ID unique de la visite.                   |
-| `user_id`  | `Int`     | Référence vers l'utilisateur.             |
-| `country_id` | `Int`    | Référence vers le pays.                   |
-| `date`     | `Date`    | Date de la visite.                        |
-| `rating`   | `Int`     | Note donnée par l'utilisateur (1-5).      |
+
+| Champ        | Type   | Description                          |
+|--------------|--------|--------------------------------------|
+| `id`         | `Int`  | ID unique de la visite.              |
+| `user_id`    | `Int`  | Référence vers l'utilisateur.        |
+| `country_id` | `Int`  | Référence vers le pays.              |
+| `date`       | `Date` | Date de la visite.                   |
+| `rating`     | `Int`  | Note donnée par l'utilisateur (1-5). |
 
 ### **Couple**
-| Champ       | Type      | Description                                |
-|-------------|-----------|--------------------------------------------|
-| `id`       | `Int`     | ID unique du couple.                      |
-| `user1_id` | `Int`     | Référence vers le premier utilisateur.     |
-| `user2_id` | `Int`     | Référence vers le second utilisateur.      |
+
+| Champ      | Type  | Description                            |
+|------------|-------|----------------------------------------|
+| `id`       | `Int` | ID unique du couple.                   |
+| `user1_id` | `Int` | Référence vers le premier utilisateur. |
+| `user2_id` | `Int` | Référence vers le second utilisateur.  |
+
+### **Continent**
+
+| ENUM            |
+|-----------------|
+| `Africa`        | 
+| `Antarctica`    |
+| `Asia`          |
+| `Europe`        |
+| `North_America` |
+| `Oceania`       |
+| `South_America` |
+
+### **Temperature**
+
+| ENUM   |
+|--------|
+| `Hot`  |
+| `Mild` |
+| `Cold` |
