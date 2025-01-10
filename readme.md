@@ -25,6 +25,20 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
 5. **Pays aléatoire :**
     - Trouver un pays aléatoirement selon les préférences utilisateur (température, continent, pays déjà visités, etc.).
 
+6. **Récuperation de pays :**
+    - Récupération des pays depuis l'API RestCountries.
+    - Stockage des pays dans la base de données.
+    - Mise à jour des données des pays.
+
+7. **Sécurité :**
+    - Authentification des utilisateurs avec JWT.
+    - Autorisations basées sur les rôles (utilisateur, admin).
+    - Hashage des mots de passe.
+
+8. **Tests :**
+    - Documentation des API avec OpenAPI.
+    - Collection Postman pour tester toutes les routes de l'API.
+
 ## **Technologies utilisées**
 - **Backend :**
     - [Node.js](https://nodejs.org/) avec [Express](https://expressjs.com/)

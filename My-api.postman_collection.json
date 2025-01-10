@@ -103,7 +103,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"JohnDoe\",\r\n    \"password\": \"1234\",\r\n    \"preferred_temperature\": \"Hot\",\r\n    \"favorite_continent\": \"Africa\"\r\n}",
+							"raw": "{\r\n    \"username\": \"JohnDoe11\",\r\n    \"password\": \"1234\",\r\n    \"preferred_temperature\": \"segs\",\r\n    \"favorite_continent\": \"Europe\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -111,15 +111,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/v1.3/users",
+							"raw": "http://localhost:3000/users/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"v1.3",
-								"users"
+								"users",
+								"5"
 							]
 						}
 					},
