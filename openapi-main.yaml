@@ -22,15 +22,19 @@ paths:
                 username:
                   type: string
                   description: Username of the new user
+                  example: "username"
                 password:
                   type: string
                   description: Password for the new user
+                  example: "password"
                 preferred_temperature:
                   type: string
                   description: User's preferred temperature
+                  example: "Mild"
                 favorite_continent:
                   type: string
                   description: User's favorite continent
+                  example: "Europe"
               required:
                 - username
                 - password
@@ -65,9 +69,11 @@ paths:
                 username:
                   type: string
                   description: Username of the user
+                  example: "username"
                 password:
                   type: string
                   description: Password of the user
+                  example: "password"
               required:
                 - username
                 - password
@@ -130,12 +136,15 @@ paths:
                 username:
                   type: string
                   description: New username
+                  example: "new_username"
                 preferred_temperature:
                   type: string
                   description: New preferred temperature
+                  example: "Cold"
                 favorite_continent:
                   type: string
                   description: New favorite continent
+                  example: "Asia"
       responses:
         '200':
           description: User updated successfully
@@ -188,6 +197,18 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Country'
+      parameters:
+        - name: country
+          in: body
+          description: Country object
+          required: true
+          schema:
+            $ref: '#/components/schemas/Country'
+          example:
+            name: "Country1"
+            continent: "Europe"
+            temperature: "Mild"
+            is_open: true
       responses:
         '201':
           description: Country created successfully
@@ -204,6 +225,7 @@ paths:
           required: true
           schema:
             type: integer
+          example: 1
       responses:
         '200':
           description: Country details retrieved successfully
@@ -222,6 +244,19 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Country'
+      parameters:
+        - name: country
+          in: body
+          description: Country object
+          required: true
+          schema:
+            $ref: '#/components/schemas/Country'
+          example:
+            id: 1
+            name: "Country2"
+            continent: "Europe"
+            temperature: "Mild"
+            is_open: true
       responses:
         '200':
           description: Country updated successfully
@@ -240,6 +275,7 @@ paths:
           required: true
           schema:
             type: integer
+          example: 1
       responses:
         '204':
           description: Country deleted successfully
@@ -275,13 +311,16 @@ paths:
                 country_id:
                   type: integer
                   description: ID of the visited country
+                  example: 2
                 date:
                   type: string
                   format: date
                   description: Date of the visit
+                  example: "2022-01-01"
                 rating:
                   type: integer
                   description: Rating of the visit (0-10)
+                  example: 8
               required:
                 - country_id
                 - date
@@ -304,6 +343,7 @@ paths:
           required: true
           schema:
             type: integer
+          example: 1
       responses:
         '200':
           description: Visit details retrieved successfully
@@ -322,14 +362,21 @@ paths:
             schema:
               type: object
               properties:
+                country_id:
+                  type: integer
+                  description: ID of the visited country
+                  example: 2
                 date:
                   type: string
                   format: date
                   description: New date of the visit
+                  example: "2022-01-01"
                 rating:
                   type: integer
                   description: New rating of the visit
+                  example: 9
               required:
+                - country_id
                 - date
                 - rating
       responses:
@@ -349,6 +396,7 @@ paths:
           required: true
           schema:
             type: integer
+          example: 1
       responses:
         '204':
           description: Visit deleted successfully
@@ -384,9 +432,11 @@ paths:
                 user1_id:
                   type: integer
                   description: ID of the first user
+                  example: 1
                 user2_id:
                   type: integer
                   description: ID of the second user
+                  example: 2
               required:
                 - user1_id
                 - user2_id
@@ -406,6 +456,7 @@ paths:
           required: true
           schema:
             type: integer
+          example: 1
       responses:
         '200':
           description: Couple details retrieved successfully
@@ -423,6 +474,7 @@ paths:
           required: true
           schema:
             type: integer
+          example: 1
       responses:
         '204':
           description: Couple deleted successfully
