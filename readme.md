@@ -111,7 +111,7 @@ Ce projet est une API construite avec **Node.js**, **Express**, et **Prisma**. E
 - `GET /users` : Liste des utilisateurs.
 - `GET /users/{id}` : Détails d'un utilisateur par ID.
 - `PUT /users` : Mettre à jour un utilisateur.
-- `DELETE /users/{id}` : Supprimer un utilisateur.
+- `DELETE /users` : Supprimer un utilisateur.
 - `DELETE /users/logout` : Déconnexion d'un utilisateur.
 
 #### **Pays**
