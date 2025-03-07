@@ -6,28 +6,28 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id                    Int         @id @default(autoincrement())
+  id                    Int      @id @default(autoincrement())
   username              String
   password              String
-  isAdmin               Boolean     @default(false)
-  favorite_continent    Continent
-  preferred_temperature Temperature
+  isAdmin               Boolean  @default(false)
+  favorite_continent    String
+  preferred_temperature String
   visits                Visit[]
-  relation1             Couple[]    @relation("User1Relation")
-  relation2             Couple[]    @relation("User2Relation")
+  relation1             Couple[] @relation("User1Relation")
+  relation2             Couple[] @relation("User2Relation")
 }
 
 model Country {
-  id          Int         @id @default(autoincrement())
-  name        String      @unique
-  continent   Continent
-  temperature Temperature
-  is_open     Boolean     @default(true)
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  continent   String
+  temperature String
+  is_open     Boolean @default(true)
   visits      Visit[]
 }
 
@@ -49,20 +49,4 @@ model Couple {
   user2_id Int
 
   @@unique([user1_id, user2_id])
-}
-
-enum Continent {
-  Africa
-  Antarctica
-  Asia
-  Europe
-  North_America
-  Oceania
-  South_America
-}
-
-enum Temperature {
-  Cold
-  Hot
-  Mild
 }

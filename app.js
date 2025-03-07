@@ -12,7 +12,7 @@ import * as url from 'url';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const openApiDocument = yaml.load(__dirname + '/openapi-main.yaml');
+// const openApiDocument = yaml.load(__dirname + '/openapi-main.yaml');
 
 const app = express();
 
@@ -21,14 +21,14 @@ const API_VERSION = 'v1.3';
 app.use(cors());
 app.use(express.json());
 
-app.use(`/api-docs/${API_VERSION}`, swaggerUi.serve, swaggerUi.setup(openApiDocument));
+// app.use(`/api-docs/${API_VERSION}`, swaggerUi.serve, swaggerUi.setup(openApiDocument));
 
-app.use(
-    OpenApiValidator.middleware({
-        apiSpec: __dirname + '/openapi-main.yaml',
-        ignoreUndocumented: true,
-    })
-);
+// app.use(
+//     OpenApiValidator.middleware({
+//         apiSpec: __dirname + '/openapi-main.yaml',
+//         ignoreUndocumented: true,
+//     })
+// );
 
 app.use(`/${API_VERSION}/users`, usersRouter);
 app.use(`/${API_VERSION}/countries`, countriesRouter);

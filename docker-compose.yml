@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  api:
+    build: .
+    container_name: api_container
+    restart: always
+    environment:
+      DATABASE_URL: file:./dev.db
+    ports:
+      - "3000:3000"
+    command: bash -c "npx prisma migrate dev && node server.js"
+
+volumes:
+  data:
